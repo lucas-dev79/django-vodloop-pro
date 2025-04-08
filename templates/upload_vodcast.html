@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title  %}Upload | Podcaster{% endblock title %}
+
+{% block content %}
+
+<div class="flex justify-center items-center bg-zinc-800 min-h-[100vh]">
+    <div class="max-w-md bg-zinc-900 p-8 rounded-sm shadow-md">
+        <div class="text-4xl text-indigo-100 font-bold mb-8">Upload Vodloop</div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="{{ form.title.id_for_label }}" class="block text-white font-semibold mb-1">Title</label>
+                {{ form.title }}
+            </div>
+            <div class="mb-4">
+                <label for="{{ form.description.id_for_label }}" class="block text-white font-semibold mb-1">Description</label>
+                {{ form.description }}
+            </div>
+            <div class="mb-4">
+                <label for="{{ form.file.id_for_label }}" class="block text-white font-semibold mb-1">Audio File</label>
+                {{ form.file }}
+            </div>
+            <div class="mb-4">
+                <label for="{{ form.m3u8_url.id_for_label }}" class="block text-white font-semibold mb-1">M3U8 URL</label>
+                {{ form.m3u8_url }}
+            </div>
+            <div class="mb-4">
+                <label for="{{ form.thumbnail.id_for_label }}" class="block text-white font-semibold mb-1">Thumbnail</label>
+                {{ form.thumbnail }}
+            </div>
+            <div class="mb-8">
+                <label for="{{ form.poster_image.id_for_label }}" class="block text-white font-semibold mb-1">Poster</label>
+                {{ form.poster_image }}
+            </div>
+            <div class="mb-4">
+                <label class="block text-white font-semibold mb-2">Categories</label>
+                {% for category in form.categories.field.queryset %}
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="{{ form.categories.name }}" value="{{ category.id }}" class="category-checkbox mr-2">
+                    
+                        <span class="category-name font-normal text-sm text-stone-500">{{ category.name }}</span>
+                    </label>
+                    <br>
+                {% endfor %}
+            </div>
+            <button type="submit" class=" w-full bg-[#fd4527] text-white rounded-sm px-4 py-2 font-semibold hover:bg-white hover:text-[#fd4527] transition duration-300">Upload</button>
+        </form>
+    </div>
+</div>
+<style>
+
+   
+</style>
+
+
+
+
+
+{% endblock content %}

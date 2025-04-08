@@ -1,0 +1,137 @@
+
+{% extends 'base.html' %}
+{% block title %}{{ podast.title }}Vodloop{% endblock title %}
+{% block content %}
+<div class="bg-zinc-800 flex justify-center items-center min-h-[100vh]">
+    <div class="w-full max-w-md bg-[#fd4527] mx-4 p-6 mt-8 mb-8 rounded-lg shadow-lg">
+        <div class="text-3xl font-bold text-white mb-5">Contact us!</div>
+<form method="POST" action="{% url 'contact_form' %}" id="contact-form" novalidate>
+    {% csrf_token %}
+
+  
+
+    <div class="mb-4">
+        {{ form.name.label|safe }} <!-- Ensures the span is rendered as HTML -->
+        {{ form.name }}
+        <span class="error-message text-[#d6ff00] font-normal text-xs"></span>
+     
+    </div>
+
+    <div class="mb-4">
+        {{ form.email.label|safe }}  <!-- This will render the label -->
+        {{ form.email }}  <!-- This will render the email input field -->
+        <span class="error-message text-[#d6ff00] font-normal text-xs"></span>
+     
+    </div>
+
+    <div class="mb-4">
+        {{ form.phone.label|safe }}  <!-- This will render the label -->
+        {{ form.phone }}  <!-- This will render the email input field -->
+        <span class="error-message text-[#d6ff00] font-normal text-xs"></span>
+    </div>
+    <div class="mb-4">
+        {{ form.subject.label|safe }}  <!-- This will render the label -->
+        {{ form.subject }}  <!-- This will render the email input field -->
+        <span class="error-message text-[#d6ff00] font-normal text-xs"></span>
+    </div>
+    <div class="mb-4">
+        {{ form.message.label|safe }}  <!-- This will render the label -->
+        {{ form.message }}  <!-- This will render the email input field -->
+        <span class="error-message text-[#d6ff00] font-normal text-xs"></span>
+    </div>
+    <div class="mb-4">
+     
+        {{ form.accept_privacy_policy }}
+    <label for="accept_privacy_policy" class="text-white text-xs font-normal">
+        Ho letto e accetto l'informativa sulla <a class="underline" href="{% url 'privacy_policy' %}" target="_blank">privacy</a>
+    </label>
+
+   
+        <span class="error-message text-[#d6ff00] font-normal text-xs block">
+         
+        </span>
+   
+    </div>
+   
+    <pre>{{ form.errors }}</pre>
+    <button type="submit" class="bg-white text-[#fd4527] px-4 py-2 rounded-lg font-semibold hover:bg-zinc-800 hover:text-white transition duration-300">Submit</button>
+    
+  </form>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        const form = event.target;
+    
+        // Collect form data
+        const formData = new FormData(form);
+    
+        // Clear any existing error messages
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+    
+        // Send the form data via AJAX
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+            },
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                // If the status is 400, parse the response JSON
+                return response.json();
+            }
+            return response.json(); // Otherwise, return the JSON as is
+        })
+        .then(data => {
+            if (data.success) {
+                // Show success SweetAlert2 message
+                Swal.fire({
+                    title: data.title,
+                    html: data.success_message,
+                    icon: 'success',
+                    iconColor: '#e0e7ff',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        popup: 'custom-popup', // For the entire alert box
+                        title: 'custom-title', // For the title
+                        htmlContainer: 'custom-text',
+                        icon: 'custom-icon', // For the text (no semicolon here)
+                    },
+                }).then(() => {
+                    window.location.href = data.redirect_url; // Redirect if provided
+                });
+                form.reset(); // Clear the form
+            } else {
+
+                console.log(data.errors);
+                // Handle validation errors
+                const errors = data.errors;
+                for (const [field, fieldErrors] of Object.entries(errors)) {
+                    const errorElement = document.querySelector(`#${field} ~ .error-message`);
+                    if (errorElement) {
+                        const messages = fieldErrors.map(err => err.message).join(' ');
+                        errorElement.textContent = messages; // Set error message text
+                    }
+
+                    if (field === 'accept_privacy_policy') {
+                        const errorElement = document.querySelector(`#accept_privacy_policy ~ .error-message`);
+                        if (errorElement) {
+                            const messages = fieldErrors.map(err => err.message).join(' ');
+                            errorElement.textContent = messages; // Set error message text
+                        }
+                    }
+
+
+                }
+            }
+        })
+        .catch(error => console.error('Error:', error)); // Log unexpected errors
+    });
+</script>
+    
+  {% endblock content %}

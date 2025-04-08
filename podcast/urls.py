@@ -1,0 +1,48 @@
+"""podcast URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from core.views.home import home
+from core.views.upload_vodcast import upload_vodcast
+from core.views.list_podcasts import list_podcasts
+from core.views.podcast_detail import podcast_detail
+from core.views.theoplayer_view import theoplayer_view
+from core.views.contact_form import contact
+from core.views.privacy_policy import privacy_policy
+
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', home, name="home"),
+    path('auth/', include('accounts.urls')),
+    path('upload/', upload_vodcast, name="vodcast_upload"),
+    path('podcasts/', list_podcasts, name="podcasts_list"),
+    path('podcast/<slug:slug>/', podcast_detail, name="detail"),
+    path('player/', theoplayer_view, name="player"),
+    path('contact/', contact, name="contact_form"),
+    path('privacy/', privacy_policy, name="privacy_policy")
+
+    
+
+    
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])

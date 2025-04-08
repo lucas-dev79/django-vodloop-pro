@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Vodloop{% endblock title %}
+
+{% block content %}
+<div class="main bg-[#dce6e5]">
+<div class="sm:container mx-4 sm:mx-auto mt-8 mb-8">
+    {% comment %} <div class="text-3xl font-bold mb-4">Vodloops</div> {% endcomment %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for podcast in podcasts %}
+        <a href="{% url "detail" podcast.slug %}" class="bg-zinc-900 rounded-lg shadow-md p-6 flex flex-col justify-between transition ease-in-out duration-500 hover:-translate-y-3 delay-75 group">
+            <div>
+                <div class="overflow-hidden">
+                <img src="{{ podcast.thumbnail.url }}" alt="Podcast Thumbnail" class="w-full h-[27rem] object-cover rounded-lg mb-4 transition ease-in-out duration-500 group-hover:scale-105 delay-75">
+                </div>
+                <h3 class="text-lg font-bold mb-2 text-white">{{ podcast.title }}</h3>
+                <p class="mb-4 text-zinc-500">{{ podcast.description|truncatewords:20 }}</p>
+                <p><i class="text-[#dce6e5] text-sm">By</i> <i class="text-[#fd4527] text-sm font-semibold">{{podcast.author}}</i></p>
+                <p class="mb-4 mt-4"><i class="text-white"></i><ul class="flex flex-wrap gap-2 mt-2">
+                    {% for category in podcast.categories.all %}
+                        <li class="text-sm font-normal text-[#fd4527]">{{ category.name }}</li>
+                    {% empty %}
+                        <li class="text-gray-500">No category assigned</li>
+                    {% endfor %}
+                </ul></p>
+              
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock content %}
+

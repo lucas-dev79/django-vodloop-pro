@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <link rel="icon" href="{% static 'images/vodloop-favicon.png'  %}" sizes="32x32">
+    <link rel="icon" href="{% static 'images/vodloop-favicon.png'  %}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{% static 'images/vodloop-favicon.png'  %}">
+
+    <link rel="stylesheet" src="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="flex flex-col">
+     <!-- Preloader -->
+     <div id="preloader" class="fixed inset-0 flex justify-center items-center bg-zinc-800 z-50">
+        <span class="loader"></span>
+    </div>
+    <nav class="flex intems-center justify-between bg-zinc-900 text-sm text-[#dce6e5] p-6 z-10">
+        
+        <div class="flex items-center">
+            <a href="/" class="text-xl font-bold text-green-400"> <img src="{% static '/images/vodloop-adm-logo.png' %}" alt="Vodcaster Logo" class="h-12 w-auto mr-2"></a>
+        </div>
+       
+        <ul class="flex items-center space-x-4">
+            {% if user.is_authenticated %}
+            <li><a href={% url "contact_form" %} class="hover:text-zinc-500">Contact us</a></li>
+            <li><a href={% url "podcasts_list" %} class="hover:text-zinc-500">Vodloops</a></li>
+            {% if user.is_superuser %}
+            <li><a href="{% url "vodcast_upload" %}" class="hover:text-gray-400">Upload</a></li>
+            {% endif %}
+            <li><span>User: {{ user.username}}</span></li>
+            <li><a href="{% url 'logout' %}" class="hover:text-gray-400">Log out</a></li>
+            {% else %}
+            <li id="logi"><a href={% url 'login' %} class="hover:text-gray-400">Login</a></li>
+            <li id="regi"><a href="{% url "register" %}"" class="hover:text-gray-400">Sign up</a></li>
+            {% endif %}    
+        </ul>
+
+    </nav>
+    {% block content %}{% endblock content %}
+    <footer class="mt-auto flex intems-center justify-between bg-zinc-900 text-white p-4 w-full bottom-0">
+
+     <ul class="flex space-x-4">
+            <li class="text-xs text-[#dce6e5]">Copyright <a href="https://adm-mediaconsulting.com/" target="_blank" class="hover:text-zinc-500">ADM</a>. All rights Reserved</li>
+           
+        </ul>
+    </footer>
+   <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.plyr.io/3.7.3/plyr.js"></script>
+   
+   
+
+    <script>
+    const player = new Plyr('#player');
+    </script>
+
+    
+
+
+
+</body> 
+
+
+
+</html>
+

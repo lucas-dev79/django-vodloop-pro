@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ podast.title }}Vodloop{% endblock title %}
+
+{% block content %}
+<div class="main bg-[#dce6e5]">
+<div class="flex flex-col justify-center items-center min-h-[100vh]">
+    <div class="bg-zinc-900 p-10 rounded-lg shadow-md w-6/12 max-w-4xl min-w-96 mt-8 mb-8">
+        <div class="text-center mb-4">
+            <div class="w-full h-64 mx-auto overflow-hidden rounded-lg">
+                <img src="{{ podcast.thumbnail.url }}" alt="Podcast Thumbnail" class="object-cover w-full h-full object-bottom">
+            </div>
+            <h2 class="text-2xl text-white font-bold mb-1 mt-2">{{ podcast.title }}</h2>
+            <p><i class="text-[#dce6e5] text-sm">by</i> <i class="text-[#fd4527] text-sm font-semibold">{{podcast.author}}</i></p>
+        </div>
+        <div class="mb-4">
+            <p class="mb-4 mt-4"><i></i> <i class="font-mormal text-[#dce6e5] not-italic">Ascolta il podcast</i></p>
+        <audio id="player" controls class="w-full">
+            <source src="{{podcast.file.url}}" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        </div>
+        <p class="mb-4 mt-4"><i></i> <i class="font-mormal text-[#dce6e5] not-italic">Guarda il vodcast</i></p>
+        <div class="video-container w-full">
+            <iframe src="/player/?video_url={{ podcast.m3u8_url }}&poster_url={{ podcast.poster_url }}" 
+                    style="max-width: 100%; width:100%; height: 100%; border: none; aspect-ratio: 16 / 9; border-radius: 12px;" 
+                    allowfullscreen></iframe>
+        </div>
+        <p class="mb-4 mt-4"><i class="text-[#dce6e5]"></i> <i class="font-normal text-zinc-500">{{podcast.description}}</i></p>
+        <p class="mb-4 mt-4"><i class="text-[#dce6e5]"></i><ul class="flex flex-wrap gap-2 mt-2">
+            {% for category in podcast.categories.all %}
+                <li class="text-sm font-normal text-white">{{ category.name }}</li>
+            {% empty %}
+                <li class="text-gray-500">No category assigned</li>
+            {% endfor %}
+        </ul></p>
+    </div>
+     <div class="flex flex-wrap lg:flex-nowrap mt-4 mb-8">
+    <a href={% url "podcasts_list" %}> <button class="hover:bg-[#fd4527] hover:text-white text-sm px-8 py-2 hover:border-2 hover:border-[#fd4527] rounded-lg font-medium bg-transparent text-[#fd4527] border-2 border-[#fd4527] transition transition ease-in-out duration-500">Torna a gli episodi</button></a>
+    </div>
+</div>
+</div>
+{% endblock content %}
+

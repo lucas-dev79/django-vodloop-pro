@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Login | Podcaster{% endblock title %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-zinc-800 mt-[-50px]">
+    <div class="w-full max-w-sm bg-zinc-900 p-6 rounded-lg shadow-lg">
+     <h2 class="text-2xl font-bold text-indigo-100 mb-4">Login</h2>
+     <div class="form-errors"></div>
+
+     <form method="POST" action="{% url 'login' %}" id="login-form">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="username" class="block text-sm text-white mb-1">Username</label>
+            <input type="text" id="username" name="username" class="w-full bg-gray-100/0 px-4 py-2 border text-[#fd4527] border-gray-300/30 text-sm placeholder-stone-700 rounded-sm focus:outline-none focus:ring-2 focus:ring-indigo-100" placeholder="Enter your username" required>
+          
+        </div>
+
+        <div class="mb-4">
+            
+            <label for="password" class="mb-1 block text-sm text-white mb-1">Password</label>
+            <div class="relative">
+            <input type="password" id="password" name="password" class="w-full bg-gray-100/0 px-4 py-2 border border-gray-300/30 text-[#fd4527] text-sm placeholder-stone-700 rounded-sm focus:outline-none focus:ring-2 focus:ring-indigo-100" placeholder="Enter your password" required>
+          
+          <!-- Button to toggle password visibility -->
+  <button id="togglePassword" type="button" class="absolute inset-y-0 right-0 pr-1 flex items-center cursor-pointer">
+    <!-- Eye Icon for showing password -->
+    <svg id="eyeIcon" class="h-5 w-5 text-gray-300/30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 14" fill="currentColor">
+        <path class="hs-password-active:hidden" d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+        <path class="hs-password-active:hidden" d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+        <path class="hs-password-active:hidden" d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+    </svg>
+
+   <svg id="eyeOpenIcon" class="hs-password-active:block hidden h-5 w-5 text-gray-300/30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 14" fill="currentColor">
+      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
+       <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+    </svg>
+
+  </button>
+</div>
+
+        </div>
+        <button type="submit" class="w-full mt-4 bg-white text-[#fd4527] px-4 py-2 rounded-sm font-semibold  hover:text-white hover:bg-[#fd4527] transition duration-300">Login</button>
+     </form>
+  <!-- Registration Link -->
+  <p class="mt-4 text-sm text-white">
+    Don't have an account? 
+    <a href="{% url 'register' %}" class="text-[#fd4527] hover:underline">Sign up</a>
+</p>
+    </div>    
+</div>
+
+<script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        const form = event.target;
+
+        // Collect form data
+        const formData = new FormData(form);
+
+        // Clear any existing error messages
+        document.querySelector('.form-errors').innerHTML = ''; // Clear the form errors container
+
+        // Send the form data via AJAX
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+            },
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                // If the status is 400, parse the response JSON
+                return response.json();
+            }
+            return response.json(); // Otherwise, return the JSON as is
+        })
+        .then(data => {
+            if (data.success) {
+                // On successful login, redirect to the home page
+                window.location.href = data.redirect_url; // Redirect to home page
+            } else {
+                // Handle validation errors
+                const errors = data.errors;
+                let errorHtml = '<div class="mb-4 p-3 bg-[#fd4527] text-white rounded"><ul>';
+
+                // Loop through the errors and generate the HTML for each
+                for (const [field, fieldErrors] of Object.entries(errors)) {
+                    for (const error of fieldErrors) {
+                        errorHtml += `<li class='text-xs'>${error.message}</li>`;
+                    }
+                }
+
+                errorHtml += '</ul></div>';
+                document.querySelector('.form-errors').innerHTML = errorHtml; // Update the error container
+            }
+        })
+        .catch(error => console.error('Error:', error)); // Log unexpected errors
+    });
+</script>
+
+<script>
+  // Get the elements
+const passwordField = document.getElementById('password');
+const togglePasswordButton = document.getElementById('togglePassword');
+const eyeIcon = document.getElementById('eyeIcon');
+const eyeOpenIcon = document.getElementById('eyeOpenIcon');
+
+// Toggle password visibility on click
+togglePasswordButton.addEventListener('click', () => {
+  const type = passwordField.type === 'password' ? 'text' : 'password';
+  passwordField.type = type;
+
+  // Toggle icon visibility based on password state
+  if (passwordField.type === 'password') {
+    eyeIcon.classList.remove('hidden');
+    eyeOpenIcon.classList.add('hidden');
+  } else {
+    eyeIcon.classList.add('hidden');
+    eyeOpenIcon.classList.remove('hidden');
+  }
+});
+</script>
+
+
+{% endblock content %}

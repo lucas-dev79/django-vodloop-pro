@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.myth.theoplayer.com/63593a5d-61cc-4d0a-a78c-2ee59b1dcb15/ui.css"/>
+    <script src="https://cdn.myth.theoplayer.com/63593a5d-61cc-4d0a-a78c-2ee59b1dcb15/THEOplayer.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .theoplayer-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .player-container.video-js {
+            width: 100%;
+            height: 100%;
+        }
+
+        .theo-primary-color, .theoplayer-skin .vjs-big-play-button{
+            color: #fff;
+        }
+        
+       
+
+        div#vjs_video_3 {
+        border: 0px solid #fff;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 20%), 0 4px 4px rgb(0 0 0 / 11%), 0 8px 8px rgb(0 0 0 / 11%), 1px -3px 6px rgb(0 0 0 / 11%), 0px -1px 5px rgb(0 0 0 / 14%);
+        }
+      
+        .theoplayer-skin:hover .vjs-big-play-button, .theoplayer-skin .vjs-big-play-button:focus {
+            background: none !important;
+          
+        }  
+      
+      .theoplayer-skin .vjs-big-play-button:hover {
+      background: none;
+      -webkit-transition-duration: 0.2s;
+      -moz-transition-duration: 0.2s;
+      transition-duration: 0.2s;
+      transform: translate(-50%, -50%) scale(1.3);
+      transition: transform 0.2s;
+      }
+      /* Set other image */
+      .theoplayer-skin .vjs-big-play-button:before {
+      content: "";
+      background: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 401.28 407.82'%3E%3Cstyle%3E.cls-1%7Bfill:%23fd452f;%7D%3C/style%3E%3Cpath class='cls-1' d='M397.69,168.16c-1.48-7.74-3.41-15.33-5.74-22.75-7.38-23.43-18.98-45.19-34.67-64.93-25.53-32.12-66.45-57.53-108.84-68.09-.33-.08-.66-.17-.99-.26-.31-.08-.62-.14-.94-.22-.52-.13-1.04-.24-1.57-.37-14.17-3.33-28.52-5.06-43.57-5.2v.09c-13.71-.11-27.32,1.22-41.23,4.06l3.4,11.88,7.09,24.78c11-2.19,22.17-3.2,33.33-3.04l.02.28c12.23.17,24.35,1.73,36.16,4.66,28.31,7.04,54.15,21.77,74.91,42.38,6.72,6.67,12.91,13.96,18.48,21.8,23.15,32.63,33.51,72.3,29.17,111.7-5.22,47.39-29.55,88.45-68.52,115.62-26.62,18.55-57.69,28.66-89.26,29.6-14.66.44-29.43-1.1-43.91-4.7-13.33-3.31-26.35-8.36-38.68-14.99-46.38-24.93-77.7-71.92-83.78-125.69-2.03-17.95-1.12-36.11,2.6-53.51,4.01-15.93,9.77-31.47,17.49-45.8,8.51-14.8,19.39-28.05,32.56-39.57.24-.21.5-.45.77-.71,1.86-1.76,5.18-4.87,9.63-5.83l-16.73,71.76,24.7,5.76,7.3,1.7c7.72-34.16,16.06-67.96,23.49-102.09,1.06-4.88,2.95-9.59,2.99-14.42.02-2.2-.35-4.43-1.35-6.71-1.3-2.94-3.4-5.14-5.94-6.78-1.82-1.18-3.86-2.07-6.02-2.7L18.34,0l-7.47,32.03,50.89,11.89,15.84,3.7c-11.6,10.96-23.37,22.19-33.62,34.49-5.65,6.78-10.85,13.88-15.28,21.45C11.61,132.76,2.05,163.94.27,196.24c-.06,1.12-.09,2.24-.14,3.36-1.08,28.83,4.28,58.16,15.61,85.04,24.61,58.4,75.3,102.2,135.59,117.19,9.12,2.27,18.39,3.86,27.78,4.81,4.85.53,9.72.91,14.62,1.07,13.35.45,26.71-.5,40.01-2.76.07-.01.14-.02.21-.03,1.08-.17,2.15-.38,3.23-.57,18.53-3.28,36.16-9.09,52.55-17.19,51.34-24.74,88.99-70.23,104.38-126.96,8.14-29.98,9.38-61.81,3.59-92.06Z'/%3E%3Cpolygon class='cls-1' points='268.03 203.91 173.25 268.41 173.25 205.23 173.25 139.41 268.03 203.91'/%3E%3C/svg%3E");
+        no-repeat 0 0;
+      /* background: url('http://i.stack.imgur.com/LT3WE.png') no-repeat 0 0; */ /* Use image instead */
+      background-repeat: no-repeat !important;
+      display: block;
+      }
+      /* Remove default THEOplayer image */
+      .theo-big-play-button-svg-container svg {
+      display: none;
+      }
+
+      .theoplayer-skin .vjs-big-play-button:after {
+        content: none !important;
+      }
+
+
+      .theo-primary-color, .vjs-selected {
+color: #fd4527 !important;
+}
+
+.theo-primary-background {
+color: #000000 !important;
+background-color: #fd4527 !important;
+}
+
+.theo-secondary-color {
+color: #ffffff !important;
+}
+
+.theo-secondary-background {
+color: #fd4527 !important;
+background-color: #ffffff !important;
+}
+
+.theo-tertiary-color {
+color: #000000 !important;
+}
+
+.theo-tertiary-background {
+color: #fd4527 !important;
+background-color: #000000 !important;
+}
+
+.theoplayer-skin .vjs-big-play-button {
+font-size: 1em;
+border-radius: 100%;
+background: none;
+-webkit-transition: all .1s ease-in-out;
+-moz-transition: all .1s ease-in-out;
+transition: all .1s ease-in-out;
+width: 10%;
+height: 0;
+padding-bottom: 10%;
+position: absolute;
+left: 50%;
+top: 50%;
+-webkit-transform: translate(-50%, -50%) scale(1.2);
+-moz-transform: translate(-50%, -50%) scale(1.2);
+transform: translate(-50%, -50%) scale(1.2);
+}
+
+@media (max-width: 430px) {
+    .theoplayer-skin .vjs-big-play-button {
+        width: 20%;
+height: 30%;
+        
+    }
+}
+
+
+
+
+
+    </style>
+    <title>Video Player</title>
+</head>
+<body>
+<div class="player-container video-js theoplayer-skin vjs-16-9"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var element = document.querySelector(".player-container");
+        var player = new THEOplayer.Player(element, {
+            libraryLocation: "https://cdn.myth.theoplayer.com/63593a5d-61cc-4d0a-a78c-2ee59b1dcb15",
+            license: "sZP7IYe6T6fiIlhL3o3e06zZTDxgFSai0LC-TDCZI6z_3l160S0iIuRoCla6FOPlUY3zWokgbgjNIOf9fl5t0SgK3SBiFSRkCKC-3uCo3mz_0oBtFDfc3D0z3uRzISRc3OfVfK4_bQgZCYxNWoryIQXzImf90SCz0Lh_3Lfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lai0u5LTS5Z3L5zFOPeWok1dDrLYtA1Ioh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfKxqWDXNWG3ybojkbK3gflNWf6E6FOPVWo31WQ1qbta6FOPzdQ4qbQc1sD4ZFK3qWmPUFOPLIQ-LflNWfK1zWDikfgzVfG3gWKxydDkibK4LbogqW6f9UwPkIYz",
+            mutedAutoplay: 'all',
+            allowNativeFullscreen: true,
+        });
+
+        var videoUrl = "{{ video_url|escapejs }}";
+        var posterUrl = "{{ poster_url|escapejs }}";
+
+        player.source = {
+            sources: [{
+                "src": videoUrl,
+                "type": "application/x-mpegurl",
+                lowLatency: true
+            }],
+            poster: posterUrl || "",
+        };
+
+        player.autoplay = false;
+        player.loop = false;
+        player.muted = true;
+        player.preload = 'auto';
+    });
+</script>
+</body>
+</html>
