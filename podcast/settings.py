@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-k1=h@hda2hd5t91+hcud*^9=@k9-i6w)q3z%*2=c158lz(iomk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['django-vodloop-pro.onrender.com', 'localhost']
 
 
 # Application definition
