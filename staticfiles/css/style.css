@@ -1,0 +1,391 @@
+
+
+
+
+.scene {
+  width: 20rem;
+  height: 20rem;
+  margin: 10rem auto;
+  perspective: 1200px;
+}
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  transform-style: preserve-3d;
+  animation: rotate 10s linear infinite;
+}
+.cube__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 20rem;
+  font-size: 3rem;
+  opacity: .8;
+}
+.cube__face--front {
+  background-color: transparent;
+  transform: rotateY(0deg) translateZ(10rem);
+}
+.cube__face--back {
+  background-color: transparent;
+  transform: rotateY(180deg) translateZ(10rem);
+}
+.cube__face--right {
+  background-color: transparent;
+  transform: rotateY(90deg) translateZ(10rem);
+}
+.cube__face--left {
+  background-color: transparent;
+  transform: rotateY(-90deg) translateZ(10rem);
+}
+.cube__face--top {
+  background-color: transparent;
+  transform: rotateX(90deg) translateZ(10rem);
+}
+.cube__face--bottom {
+  background-color: transparent;
+  transform: rotateX(-90deg) translateZ(10rem);
+}
+@keyframes rotate {
+  0% {
+    transform: rotate3d(1, 1, 0, 360deg);
+  }
+  50% {
+    transform: rotate3d(1, 1, 0, 180deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 0, 0);
+  }
+}
+svg {
+  width: 100%;
+}
+.svg-face {
+  fill:none;
+  stroke: hsl(0, 0%, 10%);
+  stroke-width: 10;
+  stroke-linecap:square;
+}
+.pattern1 {
+    stroke-dasharray: 0 167;
+    stroke-dashoffset: -83.5;
+    animation: pattern1 4s linear infinite; 
+}
+.pattern2 {
+  stroke-dasharray: 83.5;
+  stroke-dashoffset: 83.5;
+  animation: pattern2 4s linear infinite;
+}
+@keyframes pattern1 {
+  0% {
+    stroke-dasharray: 0 167;
+    stroke-dashoffset: -83.5;
+  }
+  25% {
+    stroke-dasharray: 167 167;
+    stroke-dashoffset: 0;
+  }
+  50%, 75%, 100% {
+    stroke-dasharray: 0 167;
+    stroke-dashoffset: -83.5;
+  }
+}
+@keyframes pattern2 {
+  0%, 25%, 50% {
+    stroke-dasharray: 83.5;
+    stroke-dashoffset: 83.5;
+  }
+  75% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 83.5;
+  }
+}
+
+
+
+
+.loader, .loader:before, .loader:after {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation-fill-mode: both;
+    animation: bblFadInOut 1.8s infinite ease-in-out;
+  }
+  .loader {
+    color: #e0e7ff;
+    font-size: 7px;
+    position: relative;
+    text-indent: -9999em;
+    transform: translateZ(0);
+    animation-delay: -0.16s;
+  }
+  .loader:before,
+  .loader:after {
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+  .loader:before {
+    left: -3.5em;
+    animation-delay: -0.32s;
+  }
+  .loader:after {
+    left: 3.5em;
+  }
+  
+  @keyframes bblFadInOut {
+    0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
+    40% { box-shadow: 0 2.5em 0 0 }
+  }
+
+
+
+
+
+
+
+.bg-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-attachment: fixed; */
+    background-image: url(/static/images/contact-background.jpg) !important;
+   
+
+}
+
+.bg-img-fix {
+    background-repeat: no-repeat;
+    background-size: cover;
+   background-attachment: fixed;
+    background-image: url(/static/images/contact-background.jpg) !important;
+    background-position: center;
+
+}
+
+
+a.cky-banner-element {
+    padding: 8px 30px;
+    background: #F8F9FA;
+    color: #858A8F;
+    border: 1px solid #DEE2E6;
+    box-sizing: border-box;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+h1.privacy-policy-h1 {
+font-size: 3.5714285714286rem;
+color: var(--e-global-color-7e735b2);
+font-family: "Transducer Extended", Sans-serif;
+}
+
+h2.privacy-policy-h2 {
+font-family: "Transducer Extended", Sans-serif;
+font-size: 0.8857142857143rem;
+font-weight: 600;
+}
+
+
+/* AUDIO PLAYER */
+
+.plyr--audio .plyr__control.plyr__tab-focus, .plyr--audio .plyr__control:hover, .plyr--audio .plyr__control[aria-expanded=true] {
+    
+    background: #fd452f;
+    color: #fff;
+    color: var(--plyr-audio-control-color-hover, #fff);
+    
+}
+
+.plyr--full-ui input[type=range] {
+
+    color: #fd452f;
+
+}
+
+.plyr--audio {
+    border-radius: 12px;
+}
+
+.plyr--audio .plyr__controls {
+   
+    background: #27272a;
+   
+    color: #fff;
+   
+   
+}
+
+/* NAV */
+
+
+
+
+.animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@-webkit-keyframes up-down {
+    0% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes up-down {
+    0% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+
+  #preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 9999;
+}
+
+.bg-svg {
+    width: 69px; /* Adjust size as needed */
+    height: 70px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 401.28 407.82'%3E%3Cstyle%3E.cls-1%7Bfill:%23fd452f;%7D%3C/style%3E%3Cpath class='cls-1' d='M397.69,168.16c-1.48-7.74-3.41-15.33-5.74-22.75-7.38-23.43-18.98-45.19-34.67-64.93-25.53-32.12-66.45-57.53-108.84-68.09-.33-.08-.66-.17-.99-.26-.31-.08-.62-.14-.94-.22-.52-.13-1.04-.24-1.57-.37-14.17-3.33-28.52-5.06-43.57-5.2v.09c-13.71-.11-27.32,1.22-41.23,4.06l3.4,11.88,7.09,24.78c11-2.19,22.17-3.2,33.33-3.04l.02.28c12.23.17,24.35,1.73,36.16,4.66,28.31,7.04,54.15,21.77,74.91,42.38,6.72,6.67,12.91,13.96,18.48,21.8,23.15,32.63,33.51,72.3,29.17,111.7-5.22,47.39-29.55,88.45-68.52,115.62-26.62,18.55-57.69,28.66-89.26,29.6-14.66.44-29.43-1.1-43.91-4.7-13.33-3.31-26.35-8.36-38.68-14.99-46.38-24.93-77.7-71.92-83.78-125.69-2.03-17.95-1.12-36.11,2.6-53.51,4.01-15.93,9.77-31.47,17.49-45.8,8.51-14.8,19.39-28.05,32.56-39.57.24-.21.5-.45.77-.71,1.86-1.76,5.18-4.87,9.63-5.83l-16.73,71.76,24.7,5.76,7.3,1.7c7.72-34.16,16.06-67.96,23.49-102.09,1.06-4.88,2.95-9.59,2.99-14.42.02-2.2-.35-4.43-1.35-6.71-1.3-2.94-3.4-5.14-5.94-6.78-1.82-1.18-3.86-2.07-6.02-2.7L18.34,0l-7.47,32.03,50.89,11.89,15.84,3.7c-11.6,10.96-23.37,22.19-33.62,34.49-5.65,6.78-10.85,13.88-15.28,21.45C11.61,132.76,2.05,163.94.27,196.24c-.06,1.12-.09,2.24-.14,3.36-1.08,28.83,4.28,58.16,15.61,85.04,24.61,58.4,75.3,102.2,135.59,117.19,9.12,2.27,18.39,3.86,27.78,4.81,4.85.53,9.72.91,14.62,1.07,13.35.45,26.71-.5,40.01-2.76.07-.01.14-.02.21-.03,1.08-.17,2.15-.38,3.23-.57,18.53-3.28,36.16-9.09,52.55-17.19,51.34-24.74,88.99-70.23,104.38-126.96,8.14-29.98,9.38-61.81,3.59-92.06Z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: spin 1.5s linear infinite;
+}
+
+/* Spinning animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Customize the popup background and border */
+.custom-popup {
+    background-color: #fff; /* Dark background */
+    color: #ffffff;           /* White text */
+    border: none; /* Custom border color */
+    border-radius: 10px;      /* Rounded corners */
+}
+
+/* Customize the title */
+.custom-title {
+    color: #18181b; /* Orange title color */
+    font-size: 1.875em;
+    font-weight: bold;
+}
+
+/* Customize the text */
+.custom-text {
+    color: #18181b; /* Aqua text color */
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.3rem;
+}
+
+/* Customize the confirm button */
+.custom-button {
+    background-color: #c1cfff;
+    color: #18181b;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: 1.5px solid #fff;
+    box-shadow: none !important;
+}
+
+.custom-button:hover {
+   transition: 0.3s ease-in-out;
+    border: 1.5px solid #fff;
+    background-color: #18181b;
+    color: #c1cfff;      
+}
+
+.custom-button:focus-visible {
+    box-shadow: none !important;
+    
+}
+
+
+
+.custom-icon {
+
+    border: .25em solid rgb(4 245 220) !important;
+}
+
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+    position: absolute;
+    z-index: 2;
+    top: -0.25em;
+    left: -0.25em;
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
+    border: .25em solid rgb(4 245 220) !important;
+    border-radius: 50%;
+
+}
+
+div:where(.swal2-container).swal2-backdrop-show, div:where(.swal2-container).swal2-noanimation {
+    background: rgb(0 0 0 / 71%) !important;
+}
+
+
+/* Style for the checkboxes */
+.category-checkbox {
+  appearance: none;
+  border: 1px solid rgb(209 213 219 / 0.3); /* default border color */
+  width: 20px;
+  height: 20px;
+  border-radius: 2px; /* rounded corners */
+  margin-right: 8px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Style for the checked state */
+.category-checkbox:checked {
+  background-color: none;  /* Flag color when checked */
+  border-color: #505155;      /* Border color when checked */
+  
+}
+
+/* Add the checkmark icon when checked */
+.category-checkbox:checked::before {
+  content: "";
+display: block;
+width: 18px;
+height: 18px;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.285 5.285a1 1 0 0 0-1.414 0L9 15.157l-3.071-3.07a1 1 0 1 0-1.414 1.414l3.778 3.778a1 1 0 0 0 1.414 0l10-10a1 1 0 0 0 0-1.414z'/%3E%3C/svg%3E");
+background-size: contain;
+  
+}
+
+/* Style for the category names (text color) */
+.category-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4B5563;  /* Stone-700 */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
