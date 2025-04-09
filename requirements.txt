@@ -1,5 +1,6 @@
 asgiref==3.8.1
 distlib==0.3.4
+dj-database-url==2.3.0
 Django==5.1.4
 django-environ==0.9.0
 django-hcaptcha-field==1.4.0
