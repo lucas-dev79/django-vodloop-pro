@@ -1,4 +1,5 @@
 asgiref==3.8.1
+click==8.1.8
 distlib==0.3.4
 dj-database-url==2.3.0
 Django==5.1.4
@@ -11,6 +12,7 @@ djangorestframework==3.14.0
 dnspython==2.7.0
 filelock==3.7.1
 gunicorn==23.0.0
+h11==0.14.0
 packaging==24.2
 pillow==11.0.0
 platformdirs==2.5.2
@@ -21,5 +23,6 @@ sqlparse==0.5.2
 typing_extensions==4.12.2
 ua-parser==0.16.1
 user-agents==2.2.0
+uvicorn==0.34.0
 virtualenv==20.15.1
 whitenoise==6.9.0
