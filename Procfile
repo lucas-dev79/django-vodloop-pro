@@ -1,1 +1,1 @@
-web: python3 manage.py migrate && gunicorn podcast.wsgi
+web: bash start.sh
