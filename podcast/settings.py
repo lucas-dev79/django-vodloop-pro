@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'podcast.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        default='postgresql://vodloop_db_user:eCebBc8onyNqC4rHbGMpF8zF68ZZwAl1@dpg-cvqjtfidbo4c73dk0vq0-a/vodloop_db,
         conn_max_age=600
     )
 }
