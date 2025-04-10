@@ -139,8 +139,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"]  # Place your global static files here
 STATIC_ROOT = BASE_DIR / "staticfiles"   # Used for collecting static files in production
 
 # Media Files (Uploaded Images, etc.)
-MEDIA_ROOT = "media/"
-MEDIA_URL = "media/"   # Directory for uploaded media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'   # Directory for uploaded media files
 
 #Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
