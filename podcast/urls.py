@@ -36,7 +36,10 @@ urlpatterns = [
     path('podcast/<slug:slug>/', podcast_detail, name="detail"),
     path('player/', theoplayer_view, name="player"),
     path('contact/', contact, name="contact_form"),
-    path('privacy/', privacy_policy, name="privacy_policy")
+    path('privacy/', privacy_policy, name="privacy_policy"),
+    re_path(r'^media/(?P<path>.*)$', serve, {
+        'document_root': settings.MEDIA_ROOT,
+    }),
 
     
 
