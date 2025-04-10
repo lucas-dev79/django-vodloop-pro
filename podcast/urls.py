@@ -24,6 +24,7 @@ from core.views.podcast_detail import podcast_detail
 from core.views.theoplayer_view import theoplayer_view
 from core.views.contact_form import contact
 from core.views.privacy_policy import privacy_policy
+from django.urls import re_path
 
 
 
