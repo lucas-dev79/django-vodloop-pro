@@ -25,6 +25,7 @@ from core.views.theoplayer_view import theoplayer_view
 from core.views.contact_form import contact
 from core.views.privacy_policy import privacy_policy
 from django.urls import re_path
+from django.views.static import serve
 
 
 
